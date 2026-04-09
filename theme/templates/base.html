@@ -25,7 +25,7 @@
 </head>
 <body class="bg-white text-gray-900 font-sans">
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
             <!-- Логотип -->
             <a href="{% url 'index' %}" class="flex items-center gap-3">
@@ -73,12 +73,52 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="bg-slate-50 border-t border-slate-100 mt-16">
-        <div class="max-w-6xl mx-auto px-4 py-8 text-center text-sm text-slate-400">
-            <p class="font-medium text-[#1e3a5f] mb-2">ТурЭксперт</p>
-            <p>© 2024. Все права защищены.</p>
-            <div class="mt-3 space-x-4">
-                <a href="https://t.me/" class="text-slate-400 hover:text-[#1e3a5f]">Telegram</a>
+    <footer class="bg-slate-50 border-t border-slate-200 mt-16">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Компания -->
+                <div>
+                    <h3 class="font-semibold text-[#1e3a5f] mb-4">Компания</h3>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="#services" class="hover:text-[#1e3a5f]">Формат работы</a></li>
+                        <li><a href="#services" class="hover:text-[#1e3a5f]">Наши направления</a></li>
+                        <li><a href="#services" class="hover:text-[#1e3a5f]">Прайс</a></li>
+                        <li><a href="#contact" class="hover:text-[#1e3a5f]">Контакты</a></li>
+                    </ul>
+                </div>
+
+                <!-- Документы -->
+                <div>
+                    <h3 class="font-semibold text-[#1e3a5f] mb-4">Документы</h3>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="{% url 'privacy' %}" class="hover:text-[#1e3a5f]">Политика конфиденциальности</a></li>
+                        <li><a href="{% url 'privacy' %}" class="hover:text-[#1e3a5f]">Согласие на обработку персональных данных</a></li>
+                        <li><a href="#" class="hover:text-[#1e3a5f]">Договор</a></li>
+                        <li><a href="#" class="hover:text-[#1e3a5f]">Согласие на обработку ПД (файл)</a></li>
+                        <li><a href="#" class="hover:text-[#1e3a5f]">Согласие на трансграничную передачу ПД</a></li>
+                    </ul>
+                </div>
+
+                <!-- Контакты -->
+                <div>
+                    <h3 class="font-semibold text-[#1e3a5f] mb-4">Связаться</h3>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="tel:+79654610748" class="hover:text-[#1e3a5f]">+7 (965) 461-07-48</a></li>
+                        <li><a href="mailto:Med.velnes-tour@yandex.ru" class="hover:text-[#1e3a5f]">Med.velnes-tour@yandex.ru</a></li>
+                        <li><a href="https://t.me/" class="hover:text-[#1e3a5f]">Telegram</a></li>
+                    </ul>
+                </div>
+
+                <!-- Логотип и реквизиты -->
+                <div>
+                    <p class="font-medium text-[#1e3a5f] mb-2">ТурЭксперт</p>
+                    <p class="text-sm text-slate-500 mb-2">ООО "Велнес-Юг"</p>
+                    <p class="text-sm text-slate-500 mb-4">ИНН: 2311382726</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-200 mt-8 pt-8 text-center text-sm text-slate-400">
+                <p>© 2024. Все права защищены.</p>
             </div>
         </div>
     </footer>
