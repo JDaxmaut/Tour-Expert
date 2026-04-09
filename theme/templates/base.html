@@ -20,6 +20,11 @@
     <style>
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
     </style>
 </head>
@@ -29,11 +34,7 @@
         <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
             <!-- Логотип -->
             <a href="{% url 'index' %}" class="flex items-center gap-3">
-                {% if site_settings.logo %}
-                <img src="{{ site_settings.logo.url }}" alt="ТурЭксперт" class="h-10 w-auto">
-                {% else %}
-                <span class="text-xl font-bold text-[#1e3a5f]">ТурЭксперт</span>
-                {% endif %}
+                <img src="/media/logos/logo.png" alt="ТурЭксперт" class="h-14 w-auto">
             </a>
 
             <!-- Мобильное меню -->
@@ -92,7 +93,7 @@
                     <h3 class="font-semibold text-[#1e3a5f] mb-4">Документы</h3>
                     <ul class="space-y-2 text-sm text-slate-500">
                         <li><a href="{% url 'privacy' %}" class="hover:text-[#1e3a5f]">Политика конфиденциальности</a></li>
-                        <li><a href="{% url 'privacy' %}" class="hover:text-[#1e3a5f]">Согласие на обработку персональных данных</a></li>
+                        <li><a href="{% url 'consent' %}" class="hover:text-[#1e3a5f]">Согласие на обработку персональных данных</a></li>
                         <li><a href="#" class="hover:text-[#1e3a5f]">Договор</a></li>
                         <li><a href="#" class="hover:text-[#1e3a5f]">Согласие на обработку ПД (файл)</a></li>
                         <li><a href="#" class="hover:text-[#1e3a5f]">Согласие на трансграничную передачу ПД</a></li>
@@ -133,7 +134,7 @@
             </div>
             <div class="flex-1">
                 <h3 class="text-[#1e3a5f] font-semibold mb-1">Использование cookies</h3>
-                <p class="text-slate-500 text-sm mb-4">Мы используем cookies для улучшения работы сайта. Нажимая «Принять», вы даёте <a href="{% url 'privacy' %}" class="text-[#1e3a5f] hover:underline">согласие на обработку персональных данных</a>.</p>
+                <p class="text-slate-500 text-sm mb-4">Мы используем cookies для улучшения работы сайта. Нажимая «Принять», вы даёте <a href="{% url 'consent' %}" class="text-[#1e3a5f] hover:underline">согласие на обработку персональных данных</a>.</p>
                 <div class="flex gap-3">
                     <button id="cookie-accept" class="flex-1 px-4 py-2 bg-[#1e3a5f] hover:bg-[#2d5a8a] text-white text-sm font-medium rounded-lg transition-colors">
                         Принять

@@ -15,3 +15,7 @@ def index(request):
 
 def privacy(request):
     return render(request, 'core/privacy.html')
+
+
+def consent(request):
+    return render(request, 'core/consent.html')
