@@ -21,26 +21,23 @@
         html {
             scroll-behavior: smooth;
         }
-        body {
-            background-color: #020617;
-        }
     </style>
 </head>
-<body class="bg-slate-950 text-gray-900 font-sans">
+<body class="bg-white text-gray-900 font-sans">
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100">
         <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
             <!-- Логотип -->
             <a href="{% url 'index' %}" class="flex items-center gap-3">
                 {% if site_settings.logo %}
                 <img src="{{ site_settings.logo.url }}" alt="ТурЭксперт" class="h-10 w-auto">
                 {% else %}
-                <span class="text-xl font-bold text-white">ТурЭксперт</span>
+                <span class="text-xl font-bold text-[#1e3a5f]">ТурЭксперт</span>
                 {% endif %}
             </a>
 
             <!-- Мобильное меню -->
-            <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-400 hover:text-white transition-colors" aria-label="Открыть меню">
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-[#1e3a5f]" aria-label="Открыть меню">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
@@ -48,23 +45,23 @@
 
             <!-- Навигация -->
             <nav class="hidden md:flex space-x-8 text-sm">
-                <a href="#services" class="text-gray-400 hover:text-amber-400 transition-colors">Услуги</a>
-                <a href="#about" class="text-gray-400 hover:text-amber-400 transition-colors">Обо мне</a>
-                <a href="#contact" class="text-gray-400 hover:text-amber-400 transition-colors">Контакты</a>
+                <a href="#services" class="text-slate-500 hover:text-[#1e3a5f] transition-colors">Услуги</a>
+                <a href="#about" class="text-slate-500 hover:text-[#1e3a5f] transition-colors">Обо мне</a>
+                <a href="#contact" class="text-slate-500 hover:text-[#1e3a5f] transition-colors">Контакты</a>
             </nav>
 
             <!-- Кнопка CTA -->
-            <a href="#contact" class="hidden md:inline-block px-5 py-2 bg-amber-500 hover:bg-amber-400 text-slate-900 text-sm font-semibold rounded-xl transition-all hover:scale-105">
+            <a href="#contact" class="hidden md:inline-block px-5 py-2 bg-[#1e3a5f] hover:bg-[#2d5a8a] text-white text-sm font-semibold rounded-lg transition-colors">
                 Консультация
             </a>
         </div>
 
         <!-- Мобильное меню -->
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 backdrop-blur-xl border-t border-white/5">
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
             <nav class="flex flex-col px-4 py-3 space-y-3 text-sm">
-                <a href="#services" class="text-gray-400 hover:text-amber-400">Услуги</a>
-                <a href="#about" class="text-gray-400 hover:text-amber-400">Обо мне</a>
-                <a href="#contact" class="text-gray-400 hover:text-amber-400">Контакты</a>
+                <a href="#services" class="text-slate-500 hover:text-[#1e3a5f]">Услуги</a>
+                <a href="#about" class="text-slate-500 hover:text-[#1e3a5f]">Обо мне</a>
+                <a href="#contact" class="text-slate-500 hover:text-[#1e3a5f]">Контакты</a>
             </nav>
         </div>
     </header>
@@ -76,32 +73,32 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="bg-slate-900 border-t border-white/5 mt-16">
-        <div class="max-w-6xl mx-auto px-4 py-8 text-center text-sm text-gray-500">
-            <p class="font-medium text-white mb-2">ТурЭксперт</p>
+    <footer class="bg-slate-50 border-t border-slate-100 mt-16">
+        <div class="max-w-6xl mx-auto px-4 py-8 text-center text-sm text-slate-400">
+            <p class="font-medium text-[#1e3a5f] mb-2">ТурЭксперт</p>
             <p>© 2024. Все права защищены.</p>
             <div class="mt-3 space-x-4">
-                <a href="https://t.me/" class="text-gray-500 hover:text-amber-400 transition-colors">Telegram</a>
+                <a href="https://t.me/" class="text-slate-400 hover:text-[#1e3a5f]">Telegram</a>
             </div>
         </div>
     </footer>
 
     <!-- Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-96 bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl z-50 hidden">
+    <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-96 bg-white border border-slate-200 rounded-2xl p-6 shadow-xl z-50 hidden">
         <div class="flex items-start gap-4">
-            <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                 </svg>
             </div>
             <div class="flex-1">
-                <h3 class="text-white font-semibold mb-1">Использование cookies</h3>
-                <p class="text-gray-400 text-sm mb-4">Мы используем cookies для улучшения работы сайта и анализа трафика. Нажимая «Принять», вы даёте <a href="{% url 'privacy' %}" class="text-amber-400 hover:underline">согласие на обработку персональных данных</a>.</p>
+                <h3 class="text-[#1e3a5f] font-semibold mb-1">Использование cookies</h3>
+                <p class="text-slate-500 text-sm mb-4">Мы используем cookies для улучшения работы сайта. Нажимая «Принять», вы даёте <a href="{% url 'privacy' %}" class="text-[#1e3a5f] hover:underline">согласие на обработку персональных данных</a>.</p>
                 <div class="flex gap-3">
-                    <button id="cookie-accept" class="flex-1 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-900 text-sm font-medium rounded-lg transition-colors">
+                    <button id="cookie-accept" class="flex-1 px-4 py-2 bg-[#1e3a5f] hover:bg-[#2d5a8a] text-white text-sm font-medium rounded-lg transition-colors">
                         Принять
                     </button>
-                    <button id="cookie-decline" class="flex-1 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors">
+                    <button id="cookie-decline" class="flex-1 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition-colors">
                         Отклонить
                     </button>
                 </div>
@@ -109,7 +106,7 @@
         </div>
     </div>
 
-    <!-- Скрипт для мобильного меню -->
+    <!-- Scripts -->
     <script>
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
