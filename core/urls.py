@@ -5,4 +5,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('privacy/', views.privacy, name='privacy'),
     path('consent/', views.consent, name='consent'),
+    path('contacts/', views.contacts, name='contacts'),
+    path('offer/', views.offer, name='offer'),
+    path('terms/', views.terms, name='terms'),
 ]

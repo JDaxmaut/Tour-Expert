@@ -4,7 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Туристический оператор{% endblock %}</title>
+    <meta name="description" content="ТурЭксперт — запуск и юридическая защита турбизнеса. Помогаем туроператорам легально выйти на рынок, пройти проверки и защитить бизнес.">
+    <meta name="keywords" content="туроператор, запуск турбизнеса, юридическая защита, фингарантия, Роскомнадзор, туристический бизнес">
+    <meta name="author" content="ТурЭксперт">
+    <meta property="og:title" content="ТурЭксперт — Запуск и юридическая защита турбизнеса">
+    <meta property="og:description" content="Помогаем туроператорам легально выйти на рынок, пройти проверки и защитить бизнес">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
+    <title>{% block title %}{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -26,49 +33,176 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
+        .gpu-accelerate {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        body {
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.03);
+        }
+        .rounded-xl { border-radius: 13px; }
+        .rounded-2xl { border-radius: 17px; }
+        .rounded-lg { border-radius: 7px; }
     </style>
 </head>
-<body class="bg-white text-gray-900 font-sans">
+<body class="bg-white text-gray-900 font-sans" style="padding-top: 2px;">
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 shadow-sm gpu-accelerate">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center relative">
             <!-- Логотип -->
-            <a href="{% url 'index' %}" class="flex items-center gap-3">
-                <img src="/media/logos/logo.png" alt="ТурЭксперт" class="h-14 w-auto">
+            <a href="{% url 'index' %}" class="flex items-center gap-2 flex-shrink-0 relative z-10">
+                <img src="{% static 'logo.png' %}" alt="ТурЭксперт" class="h-8 md:h-12 w-auto">
+                <span class="text-2xl md:text-4xl lg:text-5xl font-bold text-[#1e3a5f]">ТурЭксперт</span>
             </a>
 
+            <!-- Навигация (строго по центру страницы) -->
+            <nav class="hidden md:flex absolute left-1/2 -translate-x-1/2 space-x-6 text-sm">
+                <a href="{% url 'index' %}#services" class="text-slate-500 hover:text-[#1e3a5f] transition-colors">Услуги</a>
+                <a href="{% url 'index' %}#about" class="text-slate-500 hover:text-[#1e3a5f] transition-colors">О нас</a>
+                <a href="{% url 'contacts' %}" class="text-slate-500 hover:text-[#1e3a5f] transition-colors">Контакты</a>
+            </nav>
+
+            <!-- Кнопка Блог и CTA -->
+            <div class="flex items-center gap-3 ml-auto relative z-10">
+                <a href="https://t.me/turoperatorvdele" target="_blank" class="hidden md:inline-flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-[#1e3a5f] text-sm font-medium transition-colors">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.901-.902-1.056-.693-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                    Блог
+                </a>
+                <a href="#" onclick="openModal(); return false;" class="hidden md:inline-block px-5 py-2 bg-[#1e3a5f] hover:bg-[#2d5a8a] text-white text-sm font-semibold rounded-lg transition-colors">
+                    Консультация
+                </a>
+            </div>
+
             <!-- Мобильное меню -->
-            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-[#1e3a5f]" aria-label="Открыть меню">
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-[#1e3a5f] ml-auto relative z-10" aria-label="Открыть меню">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
-
-            <!-- Навигация -->
-            <nav class="hidden md:flex space-x-8 text-sm">
-                <a href="#services" class="text-slate-500 hover:text-[#1e3a5f] transition-colors">Услуги</a>
-                <a href="#about" class="text-slate-500 hover:text-[#1e3a5f] transition-colors">Обо мне</a>
-                <a href="#contact" class="text-slate-500 hover:text-[#1e3a5f] transition-colors">Контакты</a>
-            </nav>
-
-            <!-- Кнопка CTA -->
-            <a href="#contact" class="hidden md:inline-block px-5 py-2 bg-[#1e3a5f] hover:bg-[#2d5a8a] text-white text-sm font-semibold rounded-lg transition-colors">
-                Консультация
-            </a>
         </div>
 
         <!-- Мобильное меню -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
             <nav class="flex flex-col px-4 py-3 space-y-3 text-sm">
-                <a href="#services" class="text-slate-500 hover:text-[#1e3a5f]">Услуги</a>
-                <a href="#about" class="text-slate-500 hover:text-[#1e3a5f]">Обо мне</a>
-                <a href="#contact" class="text-slate-500 hover:text-[#1e3a5f]">Контакты</a>
+                <a href="{% url 'index' %}#services" class="text-slate-500 hover:text-[#1e3a5f]">Услуги</a>
+                <a href="{% url 'index' %}#about" class="text-slate-500 hover:text-[#1e3a5f]">О нас</a>
+                <a href="{% url 'contacts' %}" class="text-slate-500 hover:text-[#1e3a5f]">Контакты</a>
+                <a href="https://t.me/turoperatorvdele" target="_blank" class="text-slate-500 hover:text-[#1e3a5f] flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.901-.902-1.056-.693-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                    Блог
+                </a>
             </nav>
         </div>
     </header>
 
+    <!-- Модальное окно формы (для base.html) -->
+    <div id="contact-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl px-4">
+            <div class="bg-white rounded-2xl shadow-2xl p-5 md:p-6 relative max-h-[90vh] overflow-y-auto">
+                <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                <div class="text-center mb-6">
+                    <h2 class="text-xl font-bold text-[#1e3a5f] mb-2">Оставить заявку на обратную связь</h2>
+                    <p class="text-slate-500 text-sm">Заполните форму, и мы свяжемся с вами в ближайшее время</p>
+                </div>
+                <form action="{% url 'create_lead' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="space-y-4 mb-5">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Имя</label>
+                            <input type="text" name="name" required class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-[#1e3a5f] focus:ring-2 focus:ring-[#1e3a5f]/20 outline-none transition-colors" placeholder="Ваше имя">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Электронная почта</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-[#1e3a5f] focus:ring-2 focus:ring-[#1e3a5f]/20 outline-none transition-colors" placeholder="example@mail.ru">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Номер телефона</label>
+                            <input type="tel" name="phone" required class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-[#1e3a5f] focus:ring-2 focus:ring-[#1e3a5f]/20 outline-none transition-colors" placeholder="+7 (999) 123-45-67">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Сообщение</label>
+                            <textarea name="message" rows="3" class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-[#1e3a5f] focus:ring-2 focus:ring-[#1e3a5f]/20 outline-none transition-colors resize-none" placeholder="Расскажите о вашем проекте..."></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <p class="text-sm text-slate-600 mb-2">Мессенджеры для связи:</p>
+                        <div class="flex flex-wrap gap-3">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" name="messenger" value="telegram" class="w-4 h-4 text-[#1e3a5f] border-slate-300 rounded focus:ring-[#1e3a5f]">
+                                <span class="text-sm text-slate-600">Telegram</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" name="messenger" value="whatsapp" class="w-4 h-4 text-[#1e3a5f] border-slate-300 rounded focus:ring-[#1e3a5f]">
+                                <span class="text-sm text-slate-600">WhatsApp</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" name="messenger" value="phone" class="w-4 h-4 text-[#1e3a5f] border-slate-300 rounded focus:ring-[#1e3a5f]" checked>
+                                <span class="text-sm text-slate-600">По телефону</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-5 space-y-3">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" name="consent_offer" required class="mt-1 w-4 h-4 text-[#1e3a5f] border-slate-300 rounded focus:ring-[#1e3a5f]">
+                            <span class="text-sm text-slate-600">Я принимаю условия <a href="{% url 'offer' %}" target="_blank" class="text-[#1e3a5f] hover:underline">договора оферты</a></span>
+                        </label>
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" name="consent_data" required class="mt-1 w-4 h-4 text-[#1e3a5f] border-slate-300 rounded focus:ring-[#1e3a5f]">
+                            <span class="text-sm text-slate-600">Я даю согласие на <a href="{% url 'consent' %}" target="_blank" class="text-[#1e3a5f] hover:underline">обработку персональных данных</a></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-[#1e3a5f] hover:bg-[#2d5a8a] text-white font-semibold rounded-lg transition-colors">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function openModal() {
+        document.getElementById('contact-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        document.getElementById('contact-modal').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
+    </script>
+
     <!-- Отступ для фиксированного header -->
     <div class="h-16"></div>
+
+    <!-- Сообщения об успехе/ошибке -->
+    {% if messages %}
+    <div class="fixed top-20 right-4 left-4 md:left-auto md:w-96 z-50">
+        {% for message in messages %}
+        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 shadow-lg text-emerald-800 text-sm relative" id="toast-success">
+            <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>{{ message }}</span>
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-auto text-emerald-400 hover:text-emerald-600">&times;</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(() => { const t = document.getElementById('toast-success'); if (t) t.remove(); }, 5000);
+    </script>
+    {% endif %}
 
     <main>
         {% block content %}{% endblock %}
@@ -81,10 +215,10 @@
                 <div>
                     <h3 class="font-semibold text-[#1e3a5f] mb-4">Компания</h3>
                     <ul class="space-y-2 text-sm text-slate-500">
-                        <li><a href="#services" class="hover:text-[#1e3a5f]">Формат работы</a></li>
-                        <li><a href="#services" class="hover:text-[#1e3a5f]">Наши направления</a></li>
-                        <li><a href="#services" class="hover:text-[#1e3a5f]">Прайс</a></li>
-                        <li><a href="#contact" class="hover:text-[#1e3a5f]">Контакты</a></li>
+                        <li><a href="{% url 'index' %}#services" class="hover:text-[#1e3a5f]">Формат работы</a></li>
+                        <li><a href="{% url 'index' %}#services" class="hover:text-[#1e3a5f]">Наши направления</a></li>
+                        <li><a href="{% url 'index' %}#services" class="hover:text-[#1e3a5f]">Прайс</a></li>
+                        <li><a href="{% url 'contacts' %}" class="hover:text-[#1e3a5f]">Контакты</a></li>
                     </ul>
                 </div>
 
@@ -94,9 +228,8 @@
                     <ul class="space-y-2 text-sm text-slate-500">
                         <li><a href="{% url 'privacy' %}" class="hover:text-[#1e3a5f]">Политика конфиденциальности</a></li>
                         <li><a href="{% url 'consent' %}" class="hover:text-[#1e3a5f]">Согласие на обработку персональных данных</a></li>
-                        <li><a href="#" class="hover:text-[#1e3a5f]">Договор</a></li>
-                        <li><a href="#" class="hover:text-[#1e3a5f]">Согласие на обработку ПД (файл)</a></li>
-                        <li><a href="#" class="hover:text-[#1e3a5f]">Согласие на трансграничную передачу ПД</a></li>
+                        <li><a href="{% url 'offer' %}" class="hover:text-[#1e3a5f]">Договор оферты</a></li>
+                        <li><a href="{% url 'terms' %}" class="hover:text-[#1e3a5f]">Пользовательское соглашение</a></li>
                     </ul>
                 </div>
 
@@ -105,16 +238,19 @@
                     <h3 class="font-semibold text-[#1e3a5f] mb-4">Связаться</h3>
                     <ul class="space-y-2 text-sm text-slate-500">
                         <li><a href="tel:+79654610748" class="hover:text-[#1e3a5f]">+7 (965) 461-07-48</a></li>
-                        <li><a href="mailto:Med.velnes-tour@yandex.ru" class="hover:text-[#1e3a5f]">Med.velnes-tour@yandex.ru</a></li>
-                        <li><a href="https://t.me/" class="hover:text-[#1e3a5f]">Telegram</a></li>
+                        <li><a href="mailto:tur3xpert@yandex.ru" class="hover:text-[#1e3a5f]">tur3xpert@yandex.ru</a></li>
+                        <li><a href="https://t.me/turoperatorvdele" target="_blank" class="hover:text-[#1e3a5f]">Telegram</a></li>
+                        <li><a href="https://max.ru/join/pabv8YBdbh1Z3Acy4-qePg_SNtplCE16Dc1KO0jwqsA" target="_blank" class="hover:text-[#1e3a5f]">MAX</a></li>
                     </ul>
                 </div>
 
-                <!-- Логотип и реквизиты -->
+                <!-- Логотип и сведения об исполнителе -->
                 <div>
                     <p class="font-medium text-[#1e3a5f] mb-2">ТурЭксперт</p>
-                    <p class="text-sm text-slate-500 mb-2">ООО "Велнес-Юг"</p>
-                    <p class="text-sm text-slate-500 mb-4">ИНН: 2311382726</p>
+                    <p class="text-sm text-slate-500 mb-1">Таможникова Наталия Александровна</p>
+                    <p class="text-sm text-slate-500 mb-1">Эксперт по туризму, Медиатор</p>
+                    <p class="text-sm text-slate-500 mb-1">Член РСТ, Практик-туроператор</p>
+                    <p class="text-sm text-slate-500 mb-4">ИНН: 344222194534</p>
                 </div>
             </div>
             

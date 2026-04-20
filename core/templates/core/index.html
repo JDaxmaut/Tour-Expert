@@ -4,42 +4,63 @@
 {% block title %}ТурЭксперт — Запуск и юридическая защита турбизнеса{% endblock %}
 
 {% block content %}
+{% if show_thanks %}
+<!-- Страница благодарности -->
+<section class="relative overflow-hidden min-h-[90vh] flex items-center">
+    <div class="absolute inset-0 z-0">
+        <img src="{% static 'bkg.jpeg' %}" alt="Hero background" class="w-full h-full object-cover" style="filter: blur(10px); opacity: 0.4;">
+        <div class="absolute inset-0 bg-[#1e3a5f]/90"></div>
+    </div>
+    <div class="relative max-w-6xl mx-auto px-4 z-20 text-center">
+        <div class="w-20 h-20 mx-auto mb-8 bg-white/10 rounded-full flex items-center justify-center">
+            <svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Спасибо за заявку!</h1>
+        <p class="text-xl text-white/80 max-w-2xl mx-auto mb-10">Мы свяжемся с вами в течение дня.</p>
+        <a href="{% url 'index' %}" class="inline-flex items-center justify-center px-8 py-4 bg-white text-[#1e3a5f] font-semibold rounded-lg hover:bg-white/90 transition-colors">
+            Вернуться на главную
+        </a>
+    </div>
+</section>
+{% else %}
 <!-- Hero-секция -->
-<section class="relative bg-white overflow-hidden min-h-[90vh] flex items-center">
+<section class="relative overflow-hidden min-h-[90vh] flex items-center">
+    <!-- Фоновое изображение с блюром и затемнением -->
+    <div class="absolute inset-0 z-0">
+        <img src="{% static 'bkg.jpeg' %}" alt="Hero background" class="w-full h-full object-cover" style="filter: blur(10px); opacity: 0.4;">
+        <div class="absolute inset-0 bg-[#1e3a5f]/90"></div>
+    </div>
+    
     <!-- Геометрические линии -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-20 left-10 w-px h-40 bg-gradient-to-b from-transparent via-slate-300 to-transparent"></div>
-        <div class="absolute top-40 left-20 w-40 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
-        <div class="absolute bottom-20 right-10 w-px h-60 bg-gradient-to-b from-transparent via-slate-300 to-transparent"></div>
-        <div class="absolute bottom-40 right-20 w-60 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
-        <div class="absolute top-1/4 right-1/4 w-32 h-32 border border-slate-200 rotate-45 opacity-50"></div>
-        <div class="absolute bottom-1/4 left-1/4 w-24 h-24 border border-slate-200 rotate-12 opacity-30"></div>
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-10">
+        <div class="absolute top-20 left-10 w-px h-40 bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+        <div class="absolute top-40 left-20 w-40 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+        <div class="absolute bottom-20 right-10 w-px h-60 bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+        <div class="absolute bottom-40 right-20 w-60 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+        <div class="absolute top-1/4 right-1/4 w-32 h-32 border border-white/10 rotate-45 opacity-50"></div>
+        <div class="absolute bottom-1/4 left-1/4 w-24 h-24 border border-white/10 rotate-12 opacity-30"></div>
     </div>
 
-    {% if site_settings.hero_image %}
-    <div class="absolute inset-0">
-        <img src="{{ site_settings.hero_image.url }}" alt="Hero" class="w-full h-full object-cover" style="filter: blur(20px); opacity: 0.3;">
-    </div>
-    {% endif %}
-
-    <div class="relative max-w-6xl mx-auto px-4 py-24">
+    <div class="relative max-w-6xl mx-auto px-4 py-24 z-20">
         <div class="max-w-3xl">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1e3a5f] leading-tight mb-6">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
                 Запуск и юридическая<br>защита турбизнеса под ключ
             </h1>
 
-            <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl">
-                Помогаю туроператорам легально выйти на рынок, пройти проверки и защитить бизнес от юридических рисков. Опыт понимания операционной кухни изнутри.
+            <p class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl">
+                Выстраиваем юридически и операционно устойчивые модели для туркомпаний и туристических проектов: от договорной структуры до системы взаимодействия с клиентами и партнёрами.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4">
-                <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-[#1e3a5f] hover:bg-[#2d5a8a] text-white font-semibold rounded-lg transition-colors">
+                <a href="#" onclick="openModal(); return false;" class="inline-flex items-center justify-center px-8 py-4 bg-[#1e3a5f] hover:bg-[#2d5a8a] text-white font-semibold rounded-lg transition-colors">
                     Обсудить проект
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                     </svg>
                 </a>
-                <a href="#services" class="inline-flex items-center justify-center px-8 py-4 border border-slate-300 hover:border-[#1e3a5f] text-[#1e3a5f] font-medium rounded-lg transition-colors">
+                <a href="#services" class="inline-flex items-center justify-center px-8 py-4 border border-white/50 hover:border-white text-white font-medium rounded-lg transition-colors">
                     Смотреть услуги
                 </a>
             </div>
@@ -48,58 +69,102 @@
 </section>
 
 <!-- Блок преимуществ -->
-<section class="py-20 bg-slate-50 border-t border-slate-200">
+<section class="py-20 bg-white border-t border-slate-200">
     <div class="max-w-6xl mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Карточка 1 -->
-            <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-slate-200">
+            <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-slate-200">
                 <div class="w-14 h-14 mb-5 bg-slate-100 rounded-xl flex items-center justify-center">
                     <svg class="w-7 h-7 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                     </svg>
                 </div>
                 <h3 class="text-lg font-semibold text-[#1e3a5f] mb-3 uppercase tracking-wide">Опыт</h3>
-                <p class="text-slate-500 text-sm">Более 10 лет в туристической отрасли. Знаю все подводные камни и требования регуляторов.</p>
+                <p class="text-slate-500 text-sm">Более 12 лет в туриндустрии. Знаем все подводные камни и требования регуляторов.</p>
             </div>
 
             <!-- Карточка 2 -->
-            <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-slate-200">
+            <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-slate-200">
                 <div class="w-14 h-14 mb-5 bg-slate-100 rounded-xl flex items-center justify-center">
                     <svg class="w-7 h-7 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                     </svg>
                 </div>
                 <h3 class="text-lg font-semibold text-[#1e3a5f] mb-3 uppercase tracking-wide">Кейсы</h3>
-                <p class="text-slate-500 text-sm">Успешно запустил десятки туроператоров. Помогу избежать ошибок, которые стоят времени и денег.</p>
+                <p class="text-slate-500 text-sm">Успешно запустили десятки туроператоров. Поможем избежать ошибок, которые стоят времени и денег.</p>
             </div>
 
             <!-- Карточка 3 -->
-            <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-slate-200">
+            <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-slate-200">
                 <div class="w-14 h-14 mb-5 bg-slate-100 rounded-xl flex items-center justify-center">
                     <svg class="w-7 h-7 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                     </svg>
                 </div>
                 <h3 class="text-lg font-semibold text-[#1e3a5f] mb-3 uppercase tracking-wide">Надёжность</h3>
-                <p class="text-slate-500 text-sm">Юридическая база, которая защитит вас при проверках. Работаю по договору с чёткими обязательствами.</p>
+                <p class="text-slate-500 text-sm">Партнёрство с профильными юристами, налоговыми консультантами, бухгалтерами и маркетологами.</p>
             </div>
         </div>
             </div>
     </div>
 </section>
 
-<!-- Блок 1: Запуск турбизнеса -->
-<section id="services" class="py-20 bg-white border-t border-slate-200">
+<!-- Секция "Обо мне" -->
+<section id="about" class="py-20 bg-gradient-to-b from-white to-slate-50 border-t border-slate-200">
     <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-[#1e3a5f] text-center mb-4">Запуск турбизнеса</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Фото -->
+            <div class="order-2 lg:order-1">
+                <div class="relative">
+                    {% if site_settings.about_image %}
+                    <img src="{{ site_settings.about_image.url }}" alt="Обо мне" class="rounded-2xl w-full h-auto object-cover shadow-lg" style="box-shadow: 0 0 30px rgba(30,58,95,0.15), inset 0 0 20px rgba(0,0,0,0.1);">
+                    {% else %}
+                    <img src="{% static 'image.png' %}" alt="Обо мне" class="rounded-2xl w-full h-auto object-cover shadow-lg" style="box-shadow: 0 0 30px rgba(30,58,95,0.15), inset 0 0 20px rgba(0,0,0,0.1);">
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Текст -->
+            <div class="order-1 lg:order-2">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#1e3a5f] mb-6">О нас</h2>
+                <div class="space-y-4 text-slate-500">
+                    <p>ТурЭксперт — консалтинг в туриндустрии полного цикла. Мы не просто консультируем — мы запускаем и сопровождаем туристические проекты: от организаторов туров до туроператоров и туристических компаний.</p>
+                    <p>Обеспечиваем профессиональный старт «с нуля»: от оформления и регистрации до внесения в реестр Минэкономразвития. Пошагово выстраиваем стратегию, где проработан каждый элемент — от договорной базы до взаимодействия с контролирующими органами.</p>
+                    <p>Наша ключевая особенность — узкопрофильная экспертиза. В команде ТурЭксперт — практики туриндустрии, прошедшие путь от операционной работы до экспертного уровня. Мы не универсальный консалтинг, а специализированная команда с глубоким пониманием рынка и его требований.</p>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-slate-200">
+                    <div>
+                        <p class="text-3xl font-bold text-[#1e3a5f]">12+</p>
+                        <p class="text-sm text-slate-400">лет опыта</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-[#1e3a5f]">120+</p>
+                        <p class="text-sm text-slate-400">проектов</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-[#1e3a5f]">100%</p>
+                        <p class="text-sm text-slate-400">надёжность</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Блок 1: Запуск турбизнеса -->
+<section id="services" class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#1e3a5f] text-center mb-4">Запуск и сопровождение турбизнеса</h2>
         <p class="text-slate-500 text-center mb-12 max-w-2xl mx-auto">Комплексные решения для запуска и развития туристического бизнеса</p>
 
         <!-- Флагман: Запуск под ключ -->
         <div class="bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8a] rounded-2xl p-8 md:p-10 text-white mb-12 shadow-lg">
             <div class="flex items-center gap-3 mb-4">
-                <span class="px-3 py-1 bg-white/20 rounded-full text-sm font-medium">ФЛАГМАН</span>
+                <span class="px-3 py-1 bg-white/20 rounded-full text-sm font-medium">ХИТ ПРОДАЖ</span>
             </div>
-            <h3 class="text-2xl md:text-3xl font-bold mb-4">🚀 Запуск туроператора под ключ</h3>
+            <h3 class="text-2xl md:text-3xl font-bold mb-4">Запуск туроператора под ключ</h3>
             <p class="text-xl md:text-2xl font-bold mb-6">от 25 000 ₽</p>
             
             <div class="grid md:grid-cols-2 gap-6 mb-8">
@@ -113,108 +178,104 @@
                     </ul>
                 </div>
                 <div class="bg-white/10 rounded-xl p-5">
-                    <p class="font-semibold mb-2">👉 Результат:</p>
+                    <p class="font-semibold text-white/90 mb-2">Результат:</p>
                     <p class="text-white/90">Вы получаете полностью легальный турбизнес, готовый к работе</p>
                 </div>
             </div>
-            <a href="#contact" class="inline-flex items-center justify-center w-full md:w-auto px-8 py-4 bg-white text-[#1e3a5f] font-semibold rounded-lg hover:bg-white/90 transition-colors">
+            <a href="#" onclick="openModal(); return false;" class="inline-flex items-center justify-center w-full md:w-auto px-8 py-4 bg-white text-[#1e3a5f] font-semibold rounded-lg hover:bg-white/90 transition-colors">
                 Заказать запуск
             </a>
         </div>
 
-        <!-- Отдельные услуги -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
-                <h4 class="font-semibold text-[#1e3a5f] mb-2">Открытие ООО</h4>
-                <p class="text-2xl font-bold text-[#1e3a5f] mb-4">от 5 000 ₽</p>
-                <a href="#contact" class="text-[#1e3a5f] font-medium hover:underline">Заказать →</a>
-            </div>
-            <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
-                <h4 class="font-semibold text-[#1e3a5f] mb-2">Фингарантия</h4>
-                <p class="text-2xl font-bold text-[#1e3a5f] mb-4">от 10 000 ₽</p>
-                <a href="#contact" class="text-[#1e3a5f] font-medium hover:underline">Заказать →</a>
-            </div>
-            <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
-                <h4 class="font-semibold text-[#1e3a5f] mb-2">Внесение в реестр</h4>
-                <p class="text-2xl font-bold text-[#1e3a5f] mb-4">от 5 000 ₽</p>
-                <a href="#contact" class="text-[#1e3a5f] font-medium hover:underline">Заказать →</a>
-            </div>
-        </div>
-
         <!-- Блок 2: Сопровождение -->
-        <div class="bg-slate-50 rounded-2xl p-8 md:p-10 border border-slate-200 mb-16">
-            <h3 class="text-2xl md:text-3xl font-bold text-[#1e3a5f] mb-2">🚀 Кураторство туроператора</h3>
+        <div class="bg-white rounded-2xl p-8 md:p-10 border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 mb-16">
+            <h3 class="text-2xl md:text-3xl font-bold text-[#1e3a5f] mb-2">Системное сопровождение турбизнеса</h3>
             <p class="text-xl font-bold text-[#1e3a5f] mb-6">50 000 ₽ / месяц</p>
             
             <div class="bg-white rounded-xl p-6 border border-slate-200 mb-6">
-                <p class="font-semibold text-[#1e3a5f] mb-3">Полное сопровождение запуска и систематизация турбизнеса</p>
-                <div class="grid md:grid-cols-2 gap-4 text-slate-600">
-                    <ul class="space-y-2">
-                        <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> Процессы</li>
-                        <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> Документооборот</li>
-                        <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> Подрядчики</li>
-                    </ul>
-                    <ul class="space-y-2">
-                        <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> Сайт</li>
-                        <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> Роскомнадзор</li>
-                        <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> Программы туров</li>
-                    </ul>
+                <p class="font-semibold text-[#1e3a5f] mb-3">Месяц практической работы по выстраиванию устойчивой и управляемой системы бизнеса</p>
+                <div class="space-y-3 text-slate-600">
+                    <p>Проводим аудит и настройку ключевых процессов: от сайта и юридической базы до операционной деятельности. Настраиваем документооборот (оферта, договоры, персональные данные), бронирование и клиентский путь, взаимодействие с агентами, подрядчиками и партнёрами.</p>
+                    <p>Прорабатываем структуру турпродукта, политику возвратов и финансовую модель, сопровождаем регистрацию в Роскомнадзоре, настраиваем кадровые процессы. Дополнительно проводим аудит маркетинга и социальных сетей.</p>
                 </div>
             </div>
             
             <div class="bg-[#1e3a5f] rounded-xl p-5 text-white">
-                <p class="font-semibold mb-1">👉 Результат:</p>
-                <p class="text-white/90">У вас появляется выстроенный и управляемый бизнес, а не хаос</p>
+                <p class="font-semibold mb-1">Результат:</p>
+                <p class="text-white/90">Системно выстроенный турбизнес, готовый к стабильной работе и масштабированию</p>
             </div>
         </div>
 
         <!-- Блок 3: Юридическая база -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
                 <div class="flex items-center gap-3 mb-4">
-                    <span class="text-3xl">📄</span>
+                    <div class="w-10 h-10 bg-[#1e3a5f] rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
                     <h4 class="text-xl font-bold text-[#1e3a5f]">Пакет договоров</h4>
                 </div>
-                <p class="text-3xl font-bold text-[#1e3a5f] mb-4">5 000 ₽</p>
-                <p class="text-slate-500 mb-6">Готовый пакет договоров: с туристами, партнёрами, арендодателями</p>
-                <a href="#contact" class="inline-flex items-center justify-center w-full py-3 border border-[#1e3a5f] text-[#1e3a5f] font-medium rounded-lg hover:bg-[#1e3a5f] hover:text-white transition-colors">
+                <p class="text-3xl font-bold text-[#1e3a5f] mb-4">от 5 000 ₽</p>
+                <ul class="space-y-2 text-slate-600 mb-6 flex-grow">
+                    <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> С туристами</li>
+                    <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> С партнёрами</li>
+                    <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> С сотрудниками</li>
+                </ul>
+                <a href="#" onclick="openModal(); return false;" class="inline-flex items-center justify-center w-full py-3 border border-[#1e3a5f] text-[#1e3a5f] font-medium rounded-lg hover:bg-[#1e3a5f] hover:text-white transition-colors mt-auto">
                     Заказать
                 </a>
             </div>
-            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
                 <div class="flex items-center gap-3 mb-4">
-                    <span class="text-3xl">🔐</span>
+                    <div class="w-10 h-10 bg-[#1e3a5f] rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
                     <h4 class="text-xl font-bold text-[#1e3a5f]">Роскомнадзор</h4>
                 </div>
-                <div class="space-y-4 mb-4">
-                    <div class="flex justify-between items-center py-2 border-b border-slate-100">
-                        <span class="text-slate-600">Аудит + регистрация</span>
-                        <span class="font-bold text-[#1e3a5f]">5 000 ₽</span>
-                    </div>
-                    <div class="flex justify-between items-center py-2">
-                        <span class="text-slate-600">Ответы на проверки</span>
-                        <span class="font-bold text-[#1e3a5f]">от 40 000 ₽</span>
-                    </div>
-                </div>
-                <a href="#contact" class="inline-flex items-center justify-center w-full py-3 border border-[#1e3a5f] text-[#1e3a5f] font-medium rounded-lg hover:bg-[#1e3a5f] hover:text-white transition-colors">
+                <p class="text-3xl font-bold text-[#1e3a5f] mb-4">от 10 000 ₽</p>
+                <ul class="space-y-3 text-slate-600 mb-6 flex-grow">
+                    <li class="flex items-center gap-2">
+                        <span class="text-[#1e3a5f]">✓</span>
+                        <span>Помощь в регистрации + аудит сайта</span>
+                        <span class="font-bold text-[#1e3a5f] ml-auto">от 10 000 ₽</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-[#1e3a5f]">✓</span>
+                        <span>Пакет документов в Роскомнадзор</span>
+                        <span class="font-bold text-[#1e3a5f] ml-auto">от 50 000 ₽</span>
+                    </li>
+                </ul>
+                <a href="#" onclick="openModal(); return false;" class="inline-flex items-center justify-center w-full py-3 border border-[#1e3a5f] text-[#1e3a5f] font-medium rounded-lg hover:bg-[#1e3a5f] hover:text-white transition-colors mt-auto">
                     Заказать
                 </a>
             </div>
         </div>
 
-        <!-- Блок 4: Защита бизнеса -->
+        <!-- Блок 4: Юридические услуги -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-                <h4 class="text-xl font-bold text-[#1e3a5f] mb-4">Претензии / суды</h4>
-                <p class="text-3xl font-bold text-[#1e3a5f] mb-4">от 15 000 ₽</p>
-                <a href="#contact" class="inline-flex items-center justify-center w-full py-3 border border-[#1e3a5f] text-[#1e3a5f] font-medium rounded-lg hover:bg-[#1e3a5f] hover:text-white transition-colors">
+            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                <h4 class="text-xl font-bold text-[#1e3a5f] mb-4">Юридические услуги</h4>
+                <p class="text-3xl font-bold text-[#1e3a5f] mb-4">от 30 000 ₽</p>
+                <ul class="space-y-2 text-slate-600 mb-6 flex-grow">
+                    <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> Претензионная работа</li>
+                    <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> Судебное сопровождение</li>
+                    <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> Защита интересов туркомпании</li>
+                </ul>
+                <a href="#" onclick="openModal(); return false;" class="inline-flex items-center justify-center w-full py-3 border border-[#1e3a5f] text-[#1e3a5f] font-medium rounded-lg hover:bg-[#1e3a5f] hover:text-white transition-colors mt-auto">
                     Заказать
                 </a>
             </div>
-            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-                <h4 class="text-xl font-bold text-[#1e3a5f] mb-4">Медиация</h4>
-                <p class="text-3xl font-bold text-[#1e3a5f] mb-4">от 15 000 ₽</p>
-                <a href="#contact" class="inline-flex items-center justify-center w-full py-3 border border-[#1e3a5f] text-[#1e3a5f] font-medium rounded-lg hover:bg-[#1e3a5f] hover:text-white transition-colors">
+            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                <h4 class="text-xl font-bold text-[#1e3a5f] mb-4">Медиация в туризме</h4>
+                <p class="text-3xl font-bold text-[#1e3a5f] mb-4">от 20 000 ₽</p>
+                <ul class="space-y-2 text-slate-600 mb-6 flex-grow">
+                    <li class="flex items-center gap-2"><span class="text-[#1e3a5f]">✓</span> Досудебное урегулирование конфликтов</li>
+                </ul>
+                <a href="#" onclick="openModal(); return false;" class="inline-flex items-center justify-center w-full py-3 border border-[#1e3a5f] text-[#1e3a5f] font-medium rounded-lg hover:bg-[#1e3a5f] hover:text-white transition-colors mt-auto">
                     Заказать
                 </a>
             </div>
@@ -222,131 +283,51 @@
 
         <!-- Блок 5: Экспертные консультации -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-                <span class="text-3xl mb-4 block">💼</span>
+            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                <div class="w-12 h-12 bg-[#1e3a5f] rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                    </svg>
+                </div>
                 <h4 class="text-lg font-bold text-[#1e3a5f] mb-2">Бухгалтерская консультация</h4>
                 <p class="text-slate-500 text-sm mb-4">Налоги, структура, учёт</p>
-                <a href="#contact" class="text-[#1e3a5f] font-medium hover:underline">Заказать →</a>
+                <p class="text-2xl font-bold text-[#1e3a5f] mb-4">от 10 000 ₽</p>
+                <a href="#" onclick="openModal(); return false;" class="text-[#1e3a5f] font-medium hover:underline mt-auto">Заказать →</a>
             </div>
-            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-                <span class="text-3xl mb-4 block">💰</span>
+            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                <div class="w-12 h-12 bg-[#1e3a5f] rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
                 <h4 class="text-lg font-bold text-[#1e3a5f] mb-2">Налоговая консультация</h4>
                 <p class="text-slate-500 text-sm mb-4">Оптимизация, риски</p>
-                <a href="#contact" class="text-[#1e3a5f] font-medium hover:underline">Заказать →</a>
+                <p class="text-2xl font-bold text-[#1e3a5f] mb-4">от 10 000 ₽</p>
+                <a href="#" onclick="openModal(); return false;" class="text-[#1e3a5f] font-medium hover:underline mt-auto">Заказать →</a>
             </div>
-            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-                <span class="text-3xl mb-4 block">🧠</span>
+            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                <div class="w-12 h-12 bg-[#1e3a5f] rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                </div>
                 <h4 class="text-lg font-bold text-[#1e3a5f] mb-2">Персональная консультация</h4>
                 <p class="text-slate-500 text-sm mb-4">Стратегия / разбор кейса</p>
-                <p class="text-2xl font-bold text-[#1e3a5f] mb-4">5 000 ₽ / час</p>
-                <a href="#contact" class="text-[#1e3a5f] font-medium hover:underline">Заказать →</a>
+                <p class="text-2xl font-bold text-[#1e3a5f] mb-4">от 10 000 ₽</p>
+                <a href="#" onclick="openModal(); return false;" class="text-[#1e3a5f] font-medium hover:underline mt-auto">Заказать →</a>
             </div>
         </div>
 
         <!-- Дополнительно -->
         <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200">
-            <h4 class="text-xl font-bold text-[#1e3a5f] mb-4">🏷 Регистрация товарного знака</h4>
+            <h4 class="text-xl font-bold text-[#1e3a5f] mb-4">Регистрация товарного знака</h4>
             <p class="text-2xl font-bold text-[#1e3a5f] mb-4">от 50 000 ₽</p>
-            <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 bg-[#1e3a5f] text-white font-medium rounded-lg hover:bg-[#2d5a8a] transition-colors">
+            <a href="#" onclick="openModal(); return false;" class="inline-flex items-center justify-center px-8 py-3 bg-[#1e3a5f] text-white font-medium rounded-lg hover:bg-[#2d5a8a] transition-colors">
                 Заказать
             </a>
         </div>
     </div>
 </section>
-
-<!-- Секция "Обо мне" -->
-<section id="about" class="py-20 bg-gradient-to-br from-white via-slate-50 to-white border-t border-slate-200">
-    <div class="max-w-6xl mx-auto px-4">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Фото -->
-            <div class="order-2 lg:order-1">
-                <div class="relative">
-                    {% if site_settings.about_image %}
-                    <img src="{{ site_settings.about_image.url }}" alt="Обо мне" class="rounded-2xl w-full h-auto object-cover shadow-lg">
-                    {% else %}
-                    <div class="aspect-[4/5] bg-slate-200 rounded-2xl flex items-center justify-center">
-                        <div class="text-center text-slate-400 p-8">
-                            <div class="w-32 h-32 mx-auto mb-4 bg-slate-300 rounded-full flex items-center justify-center">
-                                <svg class="w-16 h-16 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                                </svg>
-                            </div>
-                            <p class="text-lg font-medium">Эксперт по запуску<br>турбизнеса</p>
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-
-            <!-- Текст -->
-            <div class="order-1 lg:order-2">
-                <h2 class="text-3xl md:text-4xl font-bold text-[#1e3a5f] mb-6">Обо мне</h2>
-                <div class="space-y-4 text-slate-500">
-                    <p>Я помогаю предпринимателям легально выходить на туристический рынок и защищать бизнес от юридических рисков.</p>
-                    <p>Почему это важно? Потому что турбизнес — это не только красивые туры и довольные клиенты. Это ещё и регуляторные требования, проверки Ростуризма, договорные обязательства и финансовая ответственность.</p>
-                    <p>В отличие от юристов-универсалов, я понимаю операционную кухню изнутри: как устроена работа туроператора, какие процессы критичны, где чаще всего возникают проблемы.</p>
-                    <p>Работаю честно, по договору, с чёткими сроками и понятным результатом. Моя цель — чтобы вы занимались развитием бизнеса, а не боролись с документами.</p>
-                </div>
-
-                <!-- Stats -->
-                <div class="grid grid-cols-3 gap-6 mt-10 pt-8 border-t border-slate-200">
-                    <div>
-                        <p class="text-3xl font-bold text-[#1e3a5f]">10+</p>
-                        <p class="text-sm text-slate-400">лет опыта</p>
-                    </div>
-                    <div>
-                        <p class="text-3xl font-bold text-[#1e3a5f]">50+</p>
-                        <p class="text-sm text-slate-400">проектов</p>
-                    </div>
-                    <div>
-                        <p class="text-3xl font-bold text-[#1e3a5f]">100%</p>
-                        <p class="text-sm text-slate-400">надёжность</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Форма захвата -->
-<section id="contact" class="py-20 bg-white border-t border-slate-200">
-    <div class="max-w-3xl mx-auto px-4">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#1e3a5f] mb-4">Обсудим ваш проект?</h2>
-            <p class="text-slate-500">Оставьте заявку, и я свяжусь с вами в течение рабочего дня</p>
-        </div>
-
-        <form class="bg-white rounded-2xl p-8 shadow-lg border border-slate-200" action="#" method="POST">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                    <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Имя</label>
-                    <input type="text" id="name" name="name" required
-                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-[#1e3a5f] focus:ring-2 focus:ring-[#1e3a5f]/20 outline-none transition-colors"
-                        placeholder="Ваше имя">
-                </div>
-                <div>
-                    <label for="contact" class="block text-sm font-medium text-slate-700 mb-2">Контакт</label>
-                    <input type="text" id="contact" name="contact" required
-                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-[#1e3a5f] focus:ring-2 focus:ring-[#1e3a5f]/20 outline-none transition-colors"
-                        placeholder="Телефон или email">
-                </div>
-            </div>
-
-            <div class="mb-6">
-                <label for="message" class="block text-sm font-medium text-slate-700 mb-2">Сообщение (необязательно)</label>
-                <textarea id="message" name="message" rows="3"
-                    class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-[#1e3a5f] focus:ring-2 focus:ring-[#1e3a5f]/20 outline-none transition-colors resize-none"
-                    placeholder="Расскажите о вашем проекте..."></textarea>
-            </div>
-
-            <button type="submit"
-                class="w-full py-4 bg-[#1e3a5f] hover:bg-[#2d5a8a] text-white font-semibold rounded-lg transition-colors">
-                Отправить заявку
-            </button>
-
-            <p class="text-xs text-slate-400 text-center mt-4">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
-        </form>
-    </div>
-</section>
+{% endif %}
 
 {% endblock %}

@@ -19,3 +19,15 @@ def privacy(request):
 
 def consent(request):
     return render(request, 'core/consent.html')
+
+
+def contacts(request):
+    return render(request, 'core/contacts.html')
+
+
+def offer(request):
+    return render(request, 'core/offer.html')
+
+
+def terms(request):
+    return render(request, 'core/terms.html')
