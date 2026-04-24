@@ -18,10 +18,6 @@ def create_lead(request):
         telegram = 'telegram' in messengers
         whatsapp = 'whatsapp' in messengers
         
-        # Логируем, что пришло от формы
-        print(f"DEBUG: POST data: {request.POST}")
-        print(f"DEBUG: Telegram: {telegram}, WhatsApp: {whatsapp}")
-
         if name and phone:
             # ... (сохранение в БД) ...
 
@@ -38,10 +34,6 @@ def create_lead(request):
                     "telegram": telegram,
                     "whatsapp": whatsapp,
                 }
-
-
-
-
                 
                 try:
                     req = urllib.request.Request(
@@ -53,18 +45,14 @@ def create_lead(request):
                         }
                     )
                     with urllib.request.urlopen(req) as response:
-                        print("Feedback submitted to Yandex form")
-                        print(f"Response: {response.read().decode('utf-8')}")
+                        pass
                 except urllib.error.HTTPError as e:
-                    print(f"Error submitting feedback to Yandex form: {e.code} {e.reason}")
-                    error_body = e.read().decode('utf-8')
-                    print(f"Response body: {error_body}")
+                    pass
                 except Exception as e:
-                    print(f"Error submitting feedback to Yandex form: {e}")
-
-
+                    pass
             else:
-                print("SURVEY_ID or YANDEX_FORMS_TOKEN not set, skipping Yandex form submission")
+                pass
+
 
             messages.success(request, "Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.")
             return redirect('index')
