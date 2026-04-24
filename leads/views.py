@@ -3,6 +3,9 @@ from django.core.mail import send_mail, EmailMessage
 from django.conf import settings
 from django.contrib import messages
 from .models import Lead
+import os
+import json
+import urllib.request
 
 
 def create_lead(request):
@@ -32,24 +35,32 @@ def create_lead(request):
                 except Service.DoesNotExist:
                     pass
 
-            # Письмо администратору
-            admin_subject = f"Новая заявка от {name}"
-            admin_message = f"""
-Имя: {name}
-Телефон: {phone}
-Email: {email}
-Удобный способ связи: {messenger_str}
-
-Сообщение:
-{message}
-            """
-            send_mail(
-                admin_subject,
-                admin_message.strip(),
-                settings.DEFAULT_FROM_EMAIL,
-                [settings.EMAIL_HOST_USER],
-                fail_silently=False,  # Отключено для отладки
-            )
+            # Отправка заявки в Яндекс Форму
+            survey_id = os.getenv('SURVEY_ID')
+            token = os.getenv('YANDEX_FORMS_TOKEN')
+            if survey_id and token:
+                url = f"https://api.forms.yandex.net/v1/surveys/{survey_id}/form"
+                data = {
+                    "name": name,
+                    "email": email,
+                    "telephone": phone,
+                    "message": message,
+                }
+                try:
+                    req = urllib.request.Request(
+                        url,
+                        data=json.dumps(data).encode('utf-8'),
+                        headers={
+                            'Content-Type': 'application/json',
+                            'Authorization': f"OAuth {token}"
+                        }
+                    )
+                    with urllib.request.urlopen(req) as response:
+                        print("Feedback submitted to Yandex form")
+                except Exception as e:
+                    print(f"Error submitting feedback to Yandex form: {e}")
+            else:
+                print("SURVEY_ID or YANDEX_FORMS_TOKEN not set, skipping Yandex form submission")
 
             # Письмо клиенту — подтверждение
             if email:
