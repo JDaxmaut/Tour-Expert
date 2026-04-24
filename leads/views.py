@@ -14,8 +14,7 @@ def create_lead(request):
         phone = request.POST.get('phone', '').strip()
         
         # Получаем данные о том, есть ли второй телефон (да/нет)
-        phone2_raw = request.POST.get('phone2', 'off')
-        phone2 = (phone2_raw == 'on')
+        phone2 = 'phone2' in request.POST
 
         message = request.POST.get('message', '').strip()
         service_id = request.POST.get('service_id')
