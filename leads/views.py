@@ -12,12 +12,12 @@ def create_lead(request):
         name = request.POST.get('name', '').strip()
         email = request.POST.get('email', '').strip()
         phone = request.POST.get('phone', '').strip()
-        # Поле, которое раньше называлось phone2, теперь может приходить под другим ключом
-        # или вообще отсутствовать в POST, судя по логу.
-        # В логе я вижу: 'name', 'email', 'phone', 'message', 'messenger', 'consent_offer', 'consent_data'
-        # Поля 'phone2', 'telegram', 'whatsapp' в POST нет.
-        phone2 = request.POST.get('phone2', '').strip()
-        message = request.POST.get('message', '').strip() # В логе поле 'message', а не 'coment'
+        
+        # Получаем данные о том, есть ли второй телефон (да/нет)
+        phone2_raw = request.POST.get('phone2', 'off')
+        phone2 = (phone2_raw == 'on')
+
+        message = request.POST.get('message', '').strip()
         service_id = request.POST.get('service_id')
 
         # Обработка мессенджеров из списка
@@ -27,7 +27,7 @@ def create_lead(request):
         
         # Логируем, что пришло от формы
         print(f"DEBUG: POST data: {request.POST}")
-        print(f"DEBUG: Telegram checked: {telegram}, WhatsApp checked: {whatsapp}")
+        print(f"DEBUG: Telegram: {telegram}, WhatsApp: {whatsapp}, Phone2: {phone2}")
 
         if name and phone:
             # ... (сохранение в БД) ...
@@ -41,11 +41,12 @@ def create_lead(request):
                     "name": name,
                     "email": email,
                     "phone": phone,
-                    "phone2": phone2 if phone2 else "", # Если поле пустое, передаем пустую строку
+                    "phone2": phone2,  # Теперь это bool (true/false)
                     "coment": message,
                     "telegram": telegram,
                     "whatsapp": whatsapp,
                 }
+
 
 
                 
