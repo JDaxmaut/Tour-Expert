@@ -17,9 +17,14 @@ def create_lead(request):
         service_id = request.POST.get('service_id')
 
         # Обработка мессенджеров
-        telegram = request.POST.get('telegram', 'off') == 'on'
-        whatsapp = request.POST.get('whatsapp', 'off') == 'on'
+        # Более надежная проверка: наличие ключа в POST означает, что галочка отмечена
+        telegram = 'telegram' in request.POST
+        whatsapp = 'whatsapp' in request.POST
         
+        # Логируем, что пришло от формы, для отладки
+        print(f"DEBUG: POST data: {request.POST}")
+        print(f"DEBUG: Telegram checked: {telegram}, WhatsApp checked: {whatsapp}")
+
         messengers = []
         if telegram: messengers.append('Telegram')
         if whatsapp: messengers.append('WhatsApp')
@@ -39,8 +44,9 @@ def create_lead(request):
                     "phone": phone,
                     "phone2": phone2,
                     "coment": message,
-                    "telegram": "Да" if telegram else "Нет",
-                    "whatsapp": "Да" if whatsapp else "Нет",
+                    # Пробуем передавать булевы значения, так как API форм часто ожидает true/false
+                    "telegram": telegram,
+                    "whatsapp": whatsapp,
                 }
 
                 
