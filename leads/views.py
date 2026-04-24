@@ -13,12 +13,6 @@ def create_lead(request):
         email = request.POST.get('email', '').strip()
         phone = request.POST.get('phone', '').strip()
         
-        # Получаем данные о том, есть ли второй телефон (да/нет)
-        phone2 = 'phone2' in request.POST
-
-        message = request.POST.get('message', '').strip()
-        service_id = request.POST.get('service_id')
-
         # Обработка мессенджеров из списка
         messengers = request.POST.getlist('messenger')
         telegram = 'telegram' in messengers
@@ -26,7 +20,7 @@ def create_lead(request):
         
         # Логируем, что пришло от формы
         print(f"DEBUG: POST data: {request.POST}")
-        print(f"DEBUG: Telegram: {telegram}, WhatsApp: {whatsapp}, Phone2: {phone2}")
+        print(f"DEBUG: Telegram: {telegram}, WhatsApp: {whatsapp}")
 
         if name and phone:
             # ... (сохранение в БД) ...
@@ -40,11 +34,11 @@ def create_lead(request):
                     "name": name,
                     "email": email,
                     "phone": phone,
-                    "phone2": phone2,  # Теперь это bool (true/false)
                     "coment": message,
                     "telegram": telegram,
                     "whatsapp": whatsapp,
                 }
+
 
 
 
