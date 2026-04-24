@@ -37,19 +37,17 @@ def create_lead(request):
             token = os.getenv('YANDEX_FORMS_TOKEN')
             if survey_id and token:
                 url = f"https://api.forms.yandex.net/v1/surveys/{survey_id}/form"
+                # Пробуем отправить без обертки "answer"
                 data = {
-                    "answer": {
-                        "name": name,
-                        "email": email,
-                        "phone": phone,
-                        "phone2": phone2,
+                    "name": name,
+                    "email": email,
+                    "phone": phone,
+                    "phone2": phone2,
                     "coment": message,
                     "telegram": telegram,
                     "whatsapp": whatsapp,
                     "oferta": oferta,
                     "pd": pd,
-                }
-
                 }
                 
                 try:
@@ -66,11 +64,11 @@ def create_lead(request):
                         print(f"Response: {response.read().decode('utf-8')}")
                 except urllib.error.HTTPError as e:
                     print(f"Error submitting feedback to Yandex form: {e.code} {e.reason}")
-                    # ВАЖНО: Выводим тело ответа, чтобы увидеть конкретные ошибки полей
                     error_body = e.read().decode('utf-8')
                     print(f"Response body: {error_body}")
                 except Exception as e:
                     print(f"Error submitting feedback to Yandex form: {e}")
+
 
             else:
                 print("SURVEY_ID or YANDEX_FORMS_TOKEN not set, skipping Yandex form submission")
