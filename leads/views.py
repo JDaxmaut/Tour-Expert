@@ -38,7 +38,7 @@ def create_lead(request):
             if survey_id and token:
                 url = f"https://api.forms.yandex.net/v1/surveys/{survey_id}/form"
                 data = {
-                    "values": {
+                    "answer": {
                         "name": name,
                         "email": email,
                         "phone": phone,
