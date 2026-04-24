@@ -38,18 +38,19 @@ def create_lead(request):
             if survey_id and token:
                 url = f"https://api.forms.yandex.net/v1/surveys/{survey_id}/form"
                 data = {
-                    "name": name,
-                    "email": email,
-                    "phone": phone,
-                    "phone2": phone2,
-                    "coment": message,
-                    "telegram": "Да" if telegram else "Нет",
-                    "whatsapp": "Да" if whatsapp else "Нет",
-                    "oferta": "Да" if oferta else "Нет",
-                    "pd": "Да" if pd else "Нет",
+                    "values": {
+                        "name": name,
+                        "email": email,
+                        "phone": phone,
+                        "phone2": phone2,
+                        "coment": message,
+                        "telegram": "Да" if telegram else "Нет",
+                        "whatsapp": "Да" if whatsapp else "Нет",
+                        "oferta": "Да" if oferta else "Нет",
+                        "pd": "Да" if pd else "Нет",
+                    }
                 }
-                # ... дальше код запроса ...
-
+                
                 try:
                     req = urllib.request.Request(
                         url,
@@ -61,8 +62,12 @@ def create_lead(request):
                     )
                     with urllib.request.urlopen(req) as response:
                         print("Feedback submitted to Yandex form")
+                except urllib.error.HTTPError as e:
+                    print(f"Error submitting feedback to Yandex form: {e.code} {e.reason}")
+                    print(f"Response body: {e.read().decode('utf-8')}")
                 except Exception as e:
                     print(f"Error submitting feedback to Yandex form: {e}")
+
             else:
                 print("SURVEY_ID or YANDEX_FORMS_TOKEN not set, skipping Yandex form submission")
 
