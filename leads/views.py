@@ -12,26 +12,25 @@ def create_lead(request):
         name = request.POST.get('name', '').strip()
         email = request.POST.get('email', '').strip()
         phone = request.POST.get('phone', '').strip()
+        # Поле, которое раньше называлось phone2, теперь может приходить под другим ключом
+        # или вообще отсутствовать в POST, судя по логу.
+        # В логе я вижу: 'name', 'email', 'phone', 'message', 'messenger', 'consent_offer', 'consent_data'
+        # Поля 'phone2', 'telegram', 'whatsapp' в POST нет.
         phone2 = request.POST.get('phone2', '').strip()
-        message = request.POST.get('coment', '').strip()
+        message = request.POST.get('message', '').strip() # В логе поле 'message', а не 'coment'
         service_id = request.POST.get('service_id')
 
-        # Обработка мессенджеров
-        # Более надежная проверка: наличие ключа в POST означает, что галочка отмечена
-        telegram = 'telegram' in request.POST
-        whatsapp = 'whatsapp' in request.POST
+        # Обработка мессенджеров из списка
+        messengers = request.POST.getlist('messenger')
+        telegram = 'telegram' in messengers
+        whatsapp = 'whatsapp' in messengers
         
-        # Логируем, что пришло от формы, для отладки
+        # Логируем, что пришло от формы
         print(f"DEBUG: POST data: {request.POST}")
         print(f"DEBUG: Telegram checked: {telegram}, WhatsApp checked: {whatsapp}")
 
-        messengers = []
-        if telegram: messengers.append('Telegram')
-        if whatsapp: messengers.append('WhatsApp')
-        messenger_str = ', '.join(messengers)
-
         if name and phone:
-            # ... (сохранение в БД остается прежним, предполагаю, что Lead модель адаптирована) ...
+            # ... (сохранение в БД) ...
 
             # Отправка заявки в Яндекс Форму
             survey_id = os.getenv('SURVEY_ID')
@@ -42,12 +41,12 @@ def create_lead(request):
                     "name": name,
                     "email": email,
                     "phone": phone,
-                    "phone2": phone2,
+                    "phone2": phone2 if phone2 else "", # Если поле пустое, передаем пустую строку
                     "coment": message,
-                    # Пробуем передавать булевы значения, так как API форм часто ожидает true/false
                     "telegram": telegram,
                     "whatsapp": whatsapp,
                 }
+
 
                 
                 try:
