@@ -91,4 +91,5 @@ Email: {email}
 
             messages.success(request, "Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.")
             return redirect('index')
+
     return redirect('index')
