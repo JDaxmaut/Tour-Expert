@@ -14,11 +14,9 @@ class SiteSettings(models.Model):
         return "Настройки сайта"
 
     def save(self, *args, **kwargs):
-        if not SiteSettings.objects.exists():
-            super().save(*args, **kwargs)
-        else:
-            # Update existing instance
-            SiteSettings.objects.update(logo=self.logo, hero_image=self.hero_image, about_image=self.about_image)
+        # Принудительно задаем pk=1, чтобы всегда была одна и та же запись
+        self.pk = 1
+        super().save(*args, **kwargs)
 
     @classmethod
     def get_settings(cls):

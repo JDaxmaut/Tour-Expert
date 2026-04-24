@@ -48,7 +48,7 @@ Email: {email}
                 admin_message.strip(),
                 settings.DEFAULT_FROM_EMAIL,
                 [settings.EMAIL_HOST_USER],
-                fail_silently=True,  # Временно для отладки
+                fail_silently=False,  # Отключено для отладки
             )
 
             # Письмо клиенту — подтверждение
@@ -75,7 +75,7 @@ Email: {email}
                     client_message.strip(),
                     settings.DEFAULT_FROM_EMAIL,
                     [email],
-                    fail_silently=True,  # Временно для отладки
+                    fail_silently=False,  # Отключено для отладки
                 )
 
             messages.success(request, "Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.")

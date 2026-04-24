@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from services.models import Service
 from theme.models import SiteSettings
+from .models import AdvantageCard, PriceCard
 
 
 def index(request):
@@ -9,6 +10,9 @@ def index(request):
         'launch_services': Service.objects.filter(category__slug='launch'),
         'support_services': Service.objects.filter(category__slug='support'),
         'legal_services': Service.objects.filter(category__slug='legal'),
+        'advantages': AdvantageCard.objects.all(),
+        'wide_cards': PriceCard.objects.filter(card_type='wide'),
+        'thin_cards': PriceCard.objects.filter(card_type='thin'),
     }
     return render(request, 'core/index.html', context)
 
