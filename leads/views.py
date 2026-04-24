@@ -12,6 +12,8 @@ def create_lead(request):
         name = request.POST.get('name', '').strip()
         email = request.POST.get('email', '').strip()
         phone = request.POST.get('phone', '').strip()
+        message = request.POST.get('message', '').strip()
+        service_id = request.POST.get('service_id')
         
         # Обработка мессенджеров из списка
         messengers = request.POST.getlist('messenger')
