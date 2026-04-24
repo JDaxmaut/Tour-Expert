@@ -63,9 +63,12 @@ def create_lead(request):
                     )
                     with urllib.request.urlopen(req) as response:
                         print("Feedback submitted to Yandex form")
+                        print(f"Response: {response.read().decode('utf-8')}")
                 except urllib.error.HTTPError as e:
                     print(f"Error submitting feedback to Yandex form: {e.code} {e.reason}")
-                    print(f"Response body: {e.read().decode('utf-8')}")
+                    # ВАЖНО: Выводим тело ответа, чтобы увидеть конкретные ошибки полей
+                    error_body = e.read().decode('utf-8')
+                    print(f"Response body: {error_body}")
                 except Exception as e:
                     print(f"Error submitting feedback to Yandex form: {e}")
 
