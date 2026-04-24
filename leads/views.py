@@ -44,10 +44,10 @@ def create_lead(request):
                     "phone": phone,
                     "phone2": phone2,
                     "coment": message,
-                    "telegram": telegram,
-                    "whatsapp": whatsapp,
-                    "oferta": oferta,
-                    "pd": pd,
+                    "telegram": "Да" if telegram else "Нет",
+                    "whatsapp": "Да" if whatsapp else "Нет",
+                    "oferta": "Да" if oferta else "Нет",
+                    "pd": "Да" if pd else "Нет",
                 }
                 
                 try:
