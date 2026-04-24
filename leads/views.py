@@ -1,6 +1,4 @@
 from django.shortcuts import redirect, render
-from django.core.mail import send_mail, EmailMessage
-from django.conf import settings
 from django.contrib import messages
 from .models import Lead
 import os
@@ -67,33 +65,6 @@ def create_lead(request):
                     print(f"Error submitting feedback to Yandex form: {e}")
             else:
                 print("SURVEY_ID or YANDEX_FORMS_TOKEN not set, skipping Yandex form submission")
-
-            # Письмо клиенту — подтверждение
-            if email:
-                client_subject = "Заявка принята — ТурЭксперт"
-                client_message = f"""
-{name}, здравствуйте!
-
-Ваша заявка успешно получена! Мы свяжемся с вами в ближайшее время.
-
-Что было в заявке:
-Имя: {name}
-Телефон: {phone}
-Email: {email}
-Сообщение: {message}
-
-Мы ответим вам по указанным мессенджерам.
-
-С уважением,
-ТурЭксперт
-"""
-                send_mail(
-                    client_subject,
-                    client_message.strip(),
-                    settings.DEFAULT_FROM_EMAIL,
-                    [email],
-                    fail_silently=False,  # Отключено для отладки
-                )
 
             messages.success(request, "Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.")
             return redirect('index')
