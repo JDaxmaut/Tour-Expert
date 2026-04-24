@@ -14,6 +14,7 @@ def create_lead(request):
         name = request.POST.get('name', '').strip()
         email = request.POST.get('email', '').strip()
         phone = request.POST.get('phone', '').strip()
+        phone2 = request.POST.get('phone2', '').strip()
         message = request.POST.get('coment', '').strip()
         service_id = request.POST.get('service_id')
 
@@ -42,6 +43,7 @@ def create_lead(request):
                     "name": name,
                     "email": email,
                     "phone": phone,
+                    "phone2": phone2,
                     "coment": message,
                     "telegram": "Да" if telegram else "Нет",
                     "whatsapp": "Да" if whatsapp else "Нет",
