@@ -20,10 +20,6 @@ def create_lead(request):
         telegram = request.POST.get('telegram', 'off') == 'on'
         whatsapp = request.POST.get('whatsapp', 'off') == 'on'
         
-        # Получение чекбоксов (оферта, пд)
-        oferta = request.POST.get('oferta', 'off') == 'on'
-        pd = request.POST.get('pd', 'off') == 'on'
-
         messengers = []
         if telegram: messengers.append('Telegram')
         if whatsapp: messengers.append('WhatsApp')
@@ -37,7 +33,6 @@ def create_lead(request):
             token = os.getenv('YANDEX_FORMS_TOKEN')
             if survey_id and token:
                 url = f"https://api.forms.yandex.net/v1/surveys/{survey_id}/form"
-                # Пробуем отправить без обертки "answer"
                 data = {
                     "name": name,
                     "email": email,
@@ -46,9 +41,8 @@ def create_lead(request):
                     "coment": message,
                     "telegram": "Да" if telegram else "Нет",
                     "whatsapp": "Да" if whatsapp else "Нет",
-                    "oferta": "Да" if oferta else "Нет",
-                    "pd": "Да" if pd else "Нет",
                 }
+
                 
                 try:
                     req = urllib.request.Request(
