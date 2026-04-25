@@ -9,6 +9,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+COPY media ./media
+COPY logo.png .
+COPY bkg.jpeg .
+COPY theme/static_src ./theme/static_src
+
 COPY . .
 
 RUN python manage.py collectstatic --noinput || true
