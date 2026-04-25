@@ -10,9 +10,9 @@ SECRET_KEY = 'django-insecure-change-me-in-production'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['tours-expert.ru', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['tours-expert.ru', '127.0.0.1', 'localhost', 'www.tours-expert.ru']
 
-CSRF_TRUSTED_ORIGINS = ['https://tours-expert.ru', 'http://127.0.0.1', 'http://localhost']
+CSRF_TRUSTED_ORIGINS = ['https://tours-expert.ru', 'http://127.0.0.1', 'http://localhost', 'https://127.0.0.1', 'https://localhost']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
