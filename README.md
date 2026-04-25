@@ -30,7 +30,7 @@
 ## Запуск
 
 ```bash
-cd C:\Users\dxmta\Desktop\bober\site
+cd C:\Users\dxmta\Desktop\site\bober\site
 python manage.py runserver
 ```
 
