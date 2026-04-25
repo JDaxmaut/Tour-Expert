@@ -34,6 +34,8 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
+База данных уже включена в репозиторий.
+
 ## Структура
 
 - `core/` — главная страница, политика конфиденциальности
