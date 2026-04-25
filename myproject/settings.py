@@ -12,6 +12,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['tours-expert.ru', '127.0.0.1', 'localhost']
 
+CSRF_TRUSTED_ORIGINS = ['https://tours-expert.ru', 'http://127.0.0.1', 'http://localhost']
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
