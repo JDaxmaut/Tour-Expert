@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /static/
+Disallow: /media/
+
+Sitemap: https://tours-expert.ru/sitemap.xml
