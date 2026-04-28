@@ -16,6 +16,8 @@ COPY theme/static_src ./theme/static_src
 
 COPY . .
 
+COPY db.sqlite3 .
+
 RUN python manage.py collectstatic --noinput || true
 
 COPY robots.txt .
