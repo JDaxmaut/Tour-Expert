@@ -10,6 +10,8 @@ urlpatterns = [
     path('', include('services.urls')),
     path('', include('leads.urls')),
     re_path(r'^.*\.php$', RedirectView.as_view(url='https://i.pinimg.com/236x/3d/03/5c/3d035cf5c1dd05be1964b8b58bee16b3.jpg', permanent=False)),
+    re_path(r'^wp(?:\.php)?', RedirectView.as_view(url='https://i.pinimg.com/236x/3d/03/5c/3d035cf5c1dd05be1964b8b58bee16b3.jpg', permanent=False)),
+    re_path(r'^wordpress(?:\.php)?', RedirectView.as_view(url='https://i.pinimg.com/236x/3d/03/5c/3d035cf5c1dd05be1964b8b58bee16b3.jpg', permanent=False)),
 ]
 
 if settings.DEBUG:

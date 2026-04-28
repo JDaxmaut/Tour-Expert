@@ -18,6 +18,9 @@ COPY . .
 
 RUN python manage.py collectstatic --noinput || true
 
+COPY robots.txt .
+COPY sitemap.xml .
+
 RUN echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='NatalitaMMore').exists() or User.objects.create_superuser('NatalitaMMore', 'admin@tours-expert.ru', '290982nt')" | python manage.py shell
 
 EXPOSE 8000
