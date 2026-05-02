@@ -21,6 +21,13 @@ def create_lead(request):
         whatsapp = 'whatsapp' in messengers
         
         if name and phone:
+            # Проверка капчи
+            captcha_answer = request.POST.get('captcha_answer', '').strip()
+            correct_answer = request.POST.get('captcha_correct', '').strip()
+            if captcha_answer != correct_answer:
+                messages.error(request, "Неверный ответ на проверочный вопрос.")
+                return redirect('index')
+
             # ... (сохранение в БД) ...
 
             # Отправка заявки в Яндекс Форму
