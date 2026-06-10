@@ -77,9 +77,27 @@
             </a>
 
             <!-- Навигация (строго по центру страницы) -->
-            <nav class="hidden md:flex absolute left-1/2 -translate-x-1/2 space-x-6 text-sm">
+            <nav class="hidden md:flex absolute left-1/2 -translate-x-1/2 space-x-6 text-sm items-center">
                 <a href="{% url 'index' %}#about" class="text-slate-500 hover:text-[#1e3a5f] transition-colors">О нас</a>
                 <a href="{% url 'index' %}#services" class="text-slate-500 hover:text-[#1e3a5f] transition-colors">Услуги</a>
+                <!-- Дропдаун "Для кого" -->
+                <div class="relative group">
+                    <button class="flex items-center gap-1 text-slate-500 hover:text-[#1e3a5f] transition-colors py-1">
+                        Для кого
+                        <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 hidden group-hover:block z-50">
+                        <div class="bg-white rounded-xl shadow-lg border border-slate-200 py-1.5 min-w-[220px]">
+                            <a href="{% url 'audience_page' 'turoperatoram' %}" class="block px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-[#1e3a5f] transition-colors">Туроператорам</a>
+                            <a href="{% url 'audience_page' 'organizatoram-turov' %}" class="block px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-[#1e3a5f] transition-colors">Организаторам туров</a>
+                            <a href="{% url 'audience_page' 'turagentam' %}" class="block px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-[#1e3a5f] transition-colors">Турагентам</a>
+                            <a href="{% url 'audience_page' 'gidam-i-instruktoram' %}" class="block px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-[#1e3a5f] transition-colors">Гидам и инструкторам</a>
+                            <a href="{% url 'audience_page' 'oteliam-i-gostevym-domam' %}" class="block px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-[#1e3a5f] transition-colors">Отелям и гостевым домам</a>
+                        </div>
+                    </div>
+                </div>
                 <a href="{% url 'contacts' %}" class="text-slate-500 hover:text-[#1e3a5f] transition-colors">Контакты</a>
             </nav>
 
@@ -109,6 +127,22 @@
             <nav class="flex flex-col px-4 py-3 space-y-3 text-sm">
                 <a href="{% url 'index' %}#about" class="text-slate-500 hover:text-[#1e3a5f]">О нас</a>
                 <a href="{% url 'index' %}#services" class="text-slate-500 hover:text-[#1e3a5f]">Услуги</a>
+                <!-- Для кого (мобильный) -->
+                <div>
+                    <button id="mobile-audience-btn" class="flex items-center gap-1 text-slate-500 hover:text-[#1e3a5f] w-full">
+                        Для кого
+                        <svg id="mobile-audience-icon" class="w-3.5 h-3.5 transition-transform ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div id="mobile-audience-list" class="hidden mt-1 pl-3 border-l-2 border-slate-100">
+                        <a href="{% url 'audience_page' 'turoperatoram' %}" class="block py-2 text-slate-500 hover:text-[#1e3a5f]">Туроператорам</a>
+                        <a href="{% url 'audience_page' 'organizatoram-turov' %}" class="block py-2 text-slate-500 hover:text-[#1e3a5f]">Организаторам туров</a>
+                        <a href="{% url 'audience_page' 'turagentam' %}" class="block py-2 text-slate-500 hover:text-[#1e3a5f]">Турагентам</a>
+                        <a href="{% url 'audience_page' 'gidam-i-instruktoram' %}" class="block py-2 text-slate-500 hover:text-[#1e3a5f]">Гидам и инструкторам</a>
+                        <a href="{% url 'audience_page' 'oteliam-i-gostevym-domam' %}" class="block py-2 text-slate-500 hover:text-[#1e3a5f]">Отелям и гостевым домам</a>
+                    </div>
+                </div>
                 <a href="{% url 'contacts' %}" class="text-slate-500 hover:text-[#1e3a5f]">Контакты</a>
                 <a href="https://t.me/turoperatorvdele" target="_blank" class="text-slate-500 hover:text-[#1e3a5f] flex items-center gap-2">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -347,6 +381,21 @@
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
+
+        const audienceBtn = document.getElementById('mobile-audience-btn');
+        if (audienceBtn) {
+            const audienceList = document.getElementById('mobile-audience-list');
+            const audienceIcon = document.getElementById('mobile-audience-icon');
+            audienceBtn.addEventListener('click', () => {
+                audienceList.classList.toggle('hidden');
+                audienceIcon.classList.toggle('rotate-180');
+            });
+            audienceList.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
 
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
