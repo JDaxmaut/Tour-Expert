@@ -151,5 +151,17 @@
 .prose-custom > div p:last-child {
     margin-bottom: 0;
 }
+.prose-custom .table-scroll { overflow-x: auto; margin: 1.25rem 0 0.5rem; border-radius: 0.5rem; border: 1px solid #e2e8f0; }
+.prose-custom table { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 820px; }
+.prose-custom thead th { background: #1e3a5f; color: #fff; padding: 0.65rem 0.75rem; text-align: center; font-weight: 600; border: 1px solid #2d5a8a; line-height: 1.35; }
+.prose-custom thead th:first-child { text-align: left; min-width: 120px; }
+.prose-custom tbody td { padding: 0.5rem 0.75rem; text-align: center; border: 1px solid #e2e8f0; color: #334155; vertical-align: middle; }
+.prose-custom tbody td:first-child { font-weight: 700; color: #1e3a5f; text-align: left; background: #f1f5f9 !important; white-space: nowrap; }
+.prose-custom tbody tr:nth-child(odd) td { background: #fff; }
+.prose-custom tbody tr:nth-child(even) td { background: #f8fafc; }
+.prose-custom .dual { display: flex; flex-direction: column; gap: 0.1rem; align-items: center; }
+.prose-custom .dual .d1 { color: #1e3a5f; font-weight: 600; }
+.prose-custom .dual .d2 { color: #64748b; font-size: 0.78rem; }
+.prose-custom .table-note { font-size: 0.8rem; color: #64748b; line-height: 1.5; margin-top: 0.6rem; }
 </style>
 {% endblock %}
